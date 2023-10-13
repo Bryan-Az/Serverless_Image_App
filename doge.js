@@ -3,7 +3,8 @@
 var gm = require('gm').subClass({ imageMagick: true }),
     fs = require('fs'),
     AWS = require('aws-sdk'),
-    s3 = new AWS.S3()
+    s3 = new AWS.S3(),
+    axios = require('axios')
 
 var colors = [
   "red",
@@ -37,7 +38,7 @@ module.exports.create = (event, context, cb) => {
             y = Math.floor(Math.random() * (maxHeight - (fontSize * 2)) + fontSize),
             color = colors[Math.floor(Math.random() * 4)]
 
-        image = image.fontSize(fontSize).fill(color).drawText(x, y, bird)
+        image = image.font('/opt/fonts/NimbusSanL-Bol.otf').fontSize(fontSize).fill(color).drawText(x, y, bird)
       }
 
       console.log("Writing file: ", fileName)
@@ -48,11 +49,10 @@ module.exports.create = (event, context, cb) => {
         }
         var imgdata = fs.readFileSync(fileName)
         var s3params = {
-           Bucket: 'iopipe-workshop-doge-781385744',
+           Bucket: 'iopipe-workshop-doge-65901570',
            Key: s3filename,
            Body: imgdata,
-           ContentType: 'image/jpeg',
-           ACL: "public-read"
+           ContentType: 'image/jpeg'
         }
         s3.putObject(s3params,
           (err, obj) => {

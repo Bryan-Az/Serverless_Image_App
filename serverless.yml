@@ -24,6 +24,7 @@ provider:
   name: aws
   runtime: nodejs14.x
   stage: dev
+  region: us-east-1
   profile: default
   iamRoleStatements:
     - Effect: "Allow"
@@ -84,7 +85,7 @@ functions:
           path: doge/create
           method: get
     layers:
-         - arn:aws:lambda:us-east-1:597161074694:layer:gmLayer:8
+         - 	arn:aws:lambda:us-east-1:597161074694:layer:imagemagicks:3
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -128,10 +129,11 @@ functions:
 # you can add CloudFormation resource templates here
 resources:
   Resources:
-    newResource:
+    PublicBucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: iopipe-workshop-doge-65901570
+
 #  Outputs:
 #     NewOutput:
 #       Description: "Description for the output"
