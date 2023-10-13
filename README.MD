@@ -9,14 +9,17 @@ https://github.com/iopipe/lambda-workshop (Links to an external site.)
 
 1. Clone this directory
 2. CD into the directory
-3. Create a ~/.aws/credentials file with your AWS credentials
-4. Run bash serverless_start.sh to initiate npm with serverless
-5. Now that it's running, you should sign into your AWS account and modify the role that 
+3. Create a new lambda layer in the AWS console in the layers tab by uploading the image-magick-font-freetype.zip file, which is located in the root of this directory
+4. It is important to use the ARN generated for this layer. Be sure to replace the ARN in the serverless.yml file with the ARN generated for your layer. It is used in the create method specified.
+5. Create a ~/.aws/credentials file with your AWS credentials
+6. Run bash serverless_start.sh to initiate npm with serverless
+7. Now that it's running, you should sign into your AWS account and modify the role that 
    was created to include the policy S3FullAccess
-6. Also, change your region to us-east-1
-7. Now, go to S3 and look for the bucket that was created. This is where the images will be stored.
+8. Also, change your region to us-east-1
+9. Now, go to S3 and look for the bucket that was created. This is where the images will be stored.
     Important: Modify the bucket permissions to make it public by removing the block public access.
     Further, go to the bucket policy and add the following:
+
    {
      "Version": "2012-10-17",
      "Statement": [
@@ -28,9 +31,10 @@ https://github.com/iopipe/lambda-workshop (Links to an external site.)
       }
     ]
    }
-8. Finally, you can test the output of the app in your terminal
-9. Run the following command: serverless invoke --function create -p event.json
-10. You should see the following output, or something similar:
+
+10. Finally, you can test the output of the app in your terminal
+11. Run the following command: serverless invoke --function create -p event.json
+12. You should see the following output, or something similar:
     {
     "text": "<https://s3.amazonaws.com/iopipe-workshop-doge-65901570/doge-22.jpg>",
     "unfurl_links": true,
