@@ -19,22 +19,22 @@ https://github.com/iopipe/lambda-workshop (Links to an external site.)
 9. Now, go to S3 and look for the bucket that was created. This is where the images will be stored.
     Important: Modify the bucket permissions to make it public by removing the block public access.
     Further, go to the bucket policy and add the following (remember to format the json correctly):
+
+    ```json
    {
-   "Version": "2012-10-17",
-   "Statement": [
-   {
-   "Sid": "Statement1",
-   "Effect": "Allow",
-   "Principal": "*",
-   "Action": "s3:*",
-   "Resource": "arn:aws:s3:::kangaroo-images/*"
-   }
-   ]
+     "Version": "2012-10-17",
+     "Statement": [{
+       "Sid": "Statement1",
+       "Effect": "Allow",
+       "Principal": "*",
+       "Action": "s3:*",
+       "Resource": "arn:aws:s3:::kangaroo-images/*"
+       }]
    }
 
-10. Finally, you can test the output of the app in your terminal
-11. Run the following command: serverless invoke --function create -p event.json
-12. You should see the following output, or something similar:
+11. Finally, you can test the output of the app in your terminal
+12. Run the following command: serverless invoke --function create -p event.json
+13. You should see the following output, or something similar:
     {
     "text": "https://kangaroo-images.s3.amazonaws.com/0e4b0b0a-5b1a-4b8a-8b8a-1a4b0b0a5b1a.png",
     "unfurl_links": true,
