@@ -21,16 +21,19 @@ https://github.com/iopipe/lambda-workshop (Links to an external site.)
     Further, go to the bucket policy and add the following:
 
    {
-     "Version": "2012-10-17",
-     "Statement": [
-     {
-       "Effect": "Allow",
-       "Principal": "*",
-       "Action": "s3:GetObject",
-       "Resource": "arn:aws:s3:::iopipe-workshop-doge-65901570/*"
-      }
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "your arn"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::iopipe-workshop-doge-65901570"
+        }
     ]
-   }
+}
 
 10. Finally, you can test the output of the app in your terminal
 11. Run the following command: serverless invoke --function create -p event.json
