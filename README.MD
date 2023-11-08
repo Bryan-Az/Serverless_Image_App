@@ -1,6 +1,9 @@
 # Serverless Image App
+
 Team Name: Team Late
+
 Team Members: Joash Muganda, Suresh Ravuri, Bryan Ambriz
+
 The goal for this repository is to deploy a simple serverless application.
 
 For example, like this one which generates Doge meme images, randomly choosing colors and locations of text, writing an image into an S3 bucket, as described here:
